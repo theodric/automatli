@@ -29,7 +29,7 @@ output:
 Gschüüpfli
 ```
 
-##Usage
+## Usage
 * Clone repo
 * pip3 install -r requirements.txt
 * edit automatli.py and add your Twitter API details
