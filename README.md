@@ -23,8 +23,9 @@ EXAMPLES:
 IP==sch
 SP==üü
 TP==pf
-FD==li```
+FD==li
 
 output:
-```Gschüüpfli```
+Gschüüpfli
+```
 
