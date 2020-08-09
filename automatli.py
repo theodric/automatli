@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# automatli prototyp 1.1
+# automatli public version 1
 
 import tweepy
 import time
@@ -45,7 +45,8 @@ api = tweepy.API(auth)
 
 ## Set frequency of tweets posted, in SECONDS
 ## Don't set this too low, or you may get rate-limited, or even put in Twitter Jail!
-tweetFrequency = 1
+## 3600 seconds, an hour, is a safe value
+tweetFrequency = 3600
 
 ## Sanity check.
 if ACCESS_SECRET == 'unmodified':
@@ -58,13 +59,6 @@ while True:
 	SPidx = random.randrange(len(SP))
 	TPidx = random.randrange(len(TP))
 	FDidx = random.randrange(len(FD))
-
-	
-	##DONE## ## TODO: implement random firing of prefixes and suffixes
-	## instantiate random counter variable "die toss"
-	## range 1-6,
-	## if <5,
-	## IC == ""
 
 	ICinter = IC[ICidx]
 	ICrand = random.randrange(1,6)
