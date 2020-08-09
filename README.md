@@ -20,12 +20,19 @@ FD - Diminuitive [lowercase]
 EXAMPLES:
 
 ```IC==G
-IP==sch
-SP==üü
-TP==pf
-FD==li
+IP == sch
+SP == üü
+TP == pf
+FD == li
 
 output:
 Gschüüpfli
 ```
+
+##Usage
+* Clone repo
+* pip3 install -r requirements.txt
+* edit automatli.py and add your Twitter API details
+* run
+
 
