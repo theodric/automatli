@@ -1,0 +1,10 @@
+[Unit]
+Description=Automatli
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /path/to/automatli.py >/var/log/automatli.log
+
+[Install]
+WantedBy=multi-user.target

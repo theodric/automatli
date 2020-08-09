@@ -35,4 +35,5 @@ Gschüüpfli
 * edit automatli.py and add your Twitter API details
 * run
 
-
+Optionally, you can run it as a service on Debian by creating /lib/systemd/system/jarfbot.service and symlinking it to /etc/systemd/system/multi-user.target.wants/automatli.service
+A service template is included in this distribution.
