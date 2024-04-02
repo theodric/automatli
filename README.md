@@ -1,9 +1,7 @@
 # automatli
-### e süsse roboterli uus Züri
 
 Swiss noun trollage generator
 Based on jarfbot - Jarf Beezers name generator
-Based on assaultbot - internet gunshitpostbot
 
 Format is:
 
