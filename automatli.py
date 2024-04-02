@@ -54,19 +54,10 @@ FDFile = open(FDraw, 'r')
 FD = FDFile.readlines()
 FDFile.close()
 
-CONSUMER_KEY = 'unmodified'
-CONSUMER_SECRET = 'unmodified'
-ACCESS_KEY = 'unmodified'
-ACCESS_SECRET = 'unmodified'
-
-auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-api = tweepy.API(auth)
-
 ## Set frequency of tweets posted, in SECONDS
 ## Don't set this too low, or you may get rate-limited, or even put in Twitter Jail!
 ## Reminder: there are 3600 seconds in an hour, and 86400 seconds in a day.
-tweetFrequency = 1800
+tweetFrequency = 3600
 
 ## Sanity check.
 if ACCESS_SECRET == 'unmodified':
