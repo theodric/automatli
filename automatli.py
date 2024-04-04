@@ -54,11 +54,6 @@ FDFile = open(FDraw, 'r')
 FD = FDFile.readlines()
 FDFile.close()
 
-## Set frequency of tweets posted, in SECONDS
-## Don't set this too low, or you may get rate-limited, or even put in Twitter Jail!
-## Reminder: there are 3600 seconds in an hour, and 86400 seconds in a day.
-tweetFrequency = 3600
-
 ## Sanity check.
 if ACCESS_SECRET == 'unmodified':
     print("\nYou must first edit the script and configure a few well-labeled variables before you can use it.\n")
@@ -86,6 +81,19 @@ while True:
 
 	client.create_tweet(tvit)
 
+        ## You have two options for the below.
+        ## You should only uncomment ONE of these!
+
+        ## Option 1: hardcode the frequency of tweets posted, in SECONDS
+        ## Don't set this too low, or you may get rate-limited, or even put in Twitter Jail!
+        ## Reminder: there are 3600 seconds in an hour, and 86400 seconds in a day.
+#       tweetFrequency = 14400
+
+        ## Option 2: 
+        ## Have a timer which fires randomly within a range of intervals in SECONDS.
+        ## I recommend this since it looks more like how a human would tweet, rather than
+        ## being on rails like a regular timer.
+        tweetFrequency = random.randint(1800, 14400)
 	for i in range(tweetFrequency, 0, -1):
 		time.sleep(1)
 ##if you find the countdown in stdout annoying, remove the following two lines
