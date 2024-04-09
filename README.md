@@ -17,7 +17,8 @@ FD - Diminuitive [lowercase]
 
 EXAMPLES:
 
-```IC==G
+```
+IC == G
 IP == sch
 SP == üü
 TP == pf
