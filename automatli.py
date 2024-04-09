@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-# automatli public version 1
+# automatli2024 post-Elon prototyp 2.1
 
-import time
 import sys
-from pathlib import Path
+import time
+import datetime
+import logging
 import random
+from pathlib import Path
 from twikit import Client
 
 ## twikit login setup:
-## don't comment out this line!
 client = Client('en-US')
 
 # Enter your account information here
@@ -53,11 +54,15 @@ TPFile.close()
 FDFile = open(FDraw, 'r')
 FD = FDFile.readlines()
 FDFile.close()
+## Configure logging
+log_format = '%(asctime)s - %(levelname)s - %(message)s'
+logging.basicConfig(filename='/var/log/automatli.log', level=logging.INFO, format=log_format)
 
-## Sanity check.
-if ACCESS_SECRET == 'unmodified':
-    print("\nYou must first edit the script and configure a few well-labeled variables before you can use it.\n")
-    exit()
+## Function to print the time of the next tweet
+def calculate_next_tweet_time(minutes_until_next_tweet):
+	current_time = datetime.datetime.now()
+	next_tweet_time = current_time + datetime.timedelta(minutes=minutes_until_next_tweet)
+	return next_tweet_time.strftime("%Y-%m-%d %H:%M:%S")
 
 while True:
 	ICidx = random.randrange(len(IC))
@@ -77,25 +82,32 @@ while True:
 		FDinter = ""
 
 	tvit = str.lower(ICinter.rstrip("\r\n")) + str.lower(IP[IPidx].rstrip("\r\n")) + str.lower(SP[SPidx].rstrip("\r\n")) + str.lower(TP[TPidx].rstrip("\r\n")) + str.lower(FDinter.rstrip("\r\n"))
-	print("Next twot nonsense will be: " + tvit)
+	print("Tweeting the following nonsense: " + tvit)
+	logging.info("Tweeting the following nonsense: " + tvit)
 
 	client.create_tweet(tvit)
 
-        ## You have two options for the below.
-        ## You should only uncomment ONE of these!
+	## You have two options for the below.
+	## You should ONLY uncomment one of these!
 
-        ## Option 1: hardcode the frequency of tweets posted, in SECONDS
-        ## Don't set this too low, or you may get rate-limited, or even put in Twitter Jail!
-        ## Reminder: there are 3600 seconds in an hour, and 86400 seconds in a day.
-#       tweetFrequency = 14400
+	## Option 1: hardcode the frequency of tweets posted, in SECONDS
+	## Don't set this too low, or you may get rate-limited, or even put in Twitter Jail!
+	## Reminder: there are 3600 seconds in an hour, and 86400 seconds in a day.
+#	tweetFrequency = 14400
 
-        ## Option 2: 
-        ## Have a timer which fires randomly within a range of intervals in SECONDS.
-        ## I recommend this since it looks more like how a human would tweet, rather than
-        ## being on rails like a regular timer.
-        tweetFrequency = random.randint(1717, 14873)
-	for i in range(tweetFrequency, 0, -1):
-		time.sleep(1)
-##if you find the countdown in stdout annoying, remove the following two lines
-		sys.stdout.write(str((i - 1))+' ')
-		sys.stdout.flush()
+	## Option 2: 
+	## Have a timer which fires randomly within a range of intervals in SECONDS.
+	## I recommend this, since it looks more like how a human would tweet, rather than
+	## being on rails like a regular timer.
+	tweetFrequency = random.randint(1620, 13370)
+	
+	print("Next tweet in approximately", round(tweetFrequency / 60), "minutes, at", calculate_next_tweet_time(round(tweetFrequency / 60)))
+	logging.info("Next tweet in approximately %s minutes, at %s", round(tweetFrequency / 60), calculate_next_tweet_time(round(tweetFrequency / 60)))	
+
+# I found the countdown in stdout annoying, so I replaced this function with the above, but it's still here if you want it.
+#	for i in range(tweetFrequency, 0, -1):
+#		time.sleep(1)
+#		sys.stdout.write(str((i - 1))+' ')
+#		sys.stdout.flush()
+
+	time.sleep(tweetFrequency)
